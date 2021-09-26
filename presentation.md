@@ -138,6 +138,8 @@ Essa versão garante invocações seguras mesmo em ambiente concorrente (como ap
 
 - é dificil testar o singleton, por ser estático, modificar valores na instância pode vazar conteúdo e sujar o contexto de outros testes. Além de possivelmente quebrar testes rodando concorrente;
 
+- vale ressaltar que garantir que a criação do objeto é `thread safe` não garante que os seus métodos ou estado é seguro para concorrência. É desaconselhavel o uso de um singleton com objetos que não possuem métodos e estado `thread safe`. A idéia do singleton pode dar uma falsa idéia de segurança para desenvolvedores desavisados (como por exemplo, objetos como `Calendar` e `Date` do java antes do `jdk8`).
+
 ### Vantagens e Desvantagens de cada implementação possível
 
 - quando `thread safe` por demanda, evita a carga prematura (talvez desnessária) de um objeto que pode jamais ser utilizado durante a execução da aplicação evitando assim desperdício de memória. Mas, faz isso ao custo de `over head` de sincronização dos semáforos;
