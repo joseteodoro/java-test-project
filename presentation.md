@@ -149,3 +149,7 @@ Essa versão garante invocações seguras mesmo em ambiente concorrente (como ap
 - quando `thread safe` e prematura, realiza uma carga prematura (talvez desnessária) de um objeto que pode jamais ser utilizado durante a execução da aplicação. Isso pode sim gerar desperdício de memória. Mas, aqui temos também uma oportunidade de colocar no `startup` da aplicação a carga de algum recurso que sabemos que vamos utilizar e que é custoso de levantar em memória;
 
 Na prática, o uso depende não apenas na regra de negócio, mas também das decisões arquiteturais que você toma na elaboração do código.
+
+Pergunta interessante: Posso usar o que adequa melhor ao meu caso então, mesmo que isso signifique ter diferentes tipos de `singleton` dentro do mesmo `code base`? 
+
+Resposta de minha pessoa: Minha opinião é de que não devemos surpreender nossos amiguinhos (teammates), porque eles podem supor um comportamento de todos os singletons na aplicação e isso geraria problemas. A afirmação de `usar a ferramenta certa para o trabalho certo` é via de regra, mas quando a cultura e fator humano entra na conta, podemos ter problemas no futuro. Para evitar esse tipo de ocorrência, podemos deixar claro o que a classe faz (seja no nome dos singletons, seja em comentários dos métodos estáticos que são exibidos pelas IDEs na hora de chamar os métodos no código fonte).
